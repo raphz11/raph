@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Out Your Crush</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFDFD3, #FAD4D8);
+            color: #361D32;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-family: 'Playfair Display', serif, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background 1s ease;
+        }
+        #proceedPage, #congratulationsPage, #invitationPage {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .button {
+            background-color: #FF9AA2;
+            border: none;
+            color: #361D32;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.5s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            transform: scale(1.1);
+            background-color: #FFB6C1;
+        }
+        #noButton {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.5s ease, top 0.5s ease, left 0.5s ease;
+            background-color: #FF9AA2;
+            border-radius: 50%;
+            border: 2px solid #361D32;
+            padding: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        #noButton:hover {
+            transform: rotate(15deg) scale(1.1);
+            background-color: #FFB6C1;
+        }
+        #volumeControl {
+            height: 5px;
+            background: #FFB6C1;
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.9;
+            transition: background-color 0.5s ease;
+        }
+        #volumeControl:hover {
+            background: #FFA7C4;
+        }
+        .invitation {
+            border: 2px solid #FF9AA2;
+            padding: 20px;
+            border-radius: 25px;
+            background-color: #FFF0F3;
+            width: 60%;
+            margin: 20px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .volume-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .volume-label {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FFB6C1;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 82%, 18% 100%, 0% 38%);
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+        }
+        .congratulations-text {
+            font-size: 2rem;
+            opacity: 0;
+            animation: revealText 3s ease forwards;
+        }
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FFB6C1;
+            animation: confetti 2s ease-out forwards;
+            opacity: 0.8;
+        }
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+            100% {
+                transform: translateY(200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createFloatingHearts() {
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDuration = 4 + Math.random() * 4 + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(heart);
+            }
+        }
+        window.onload = createFloatingHearts;
+    </script>
+    <div id="mainPage">
+        <p>yooo, raph here, i just made something real quick for you with my dummy coding skills lol, anyways, adjust the volume first and pick a song from below (selected these tracks from our blends geheh)</p>
+        <div id="volumeContainer" style="margin-bottom: 20px;">
+            <p class="volume-label">Volume Control:</p>
+            <input id="volumeControl" type="range" min="0" max="1" step="0.1" value="0.5" onchange="adjustVolume()">
+        </div>
+        <button class="button" onclick="selectSong('Thousand Miles')">Thousand Miles</button>
+        <button class="button" onclick="selectSong('CHIHIRO')">CHIHIRO</button>
+        <button class="button" onclick="selectSong('Clarity')">Clarity</button>
+    </div>
+
+    <div id="proceedPage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+        <p>okay i've never done this this before but well um,.. i also know it's like super cheesy but still, WHY NOT!? anyways, here goes nothing :</p>
+        <p>karuna rao, would you like to go on a date with me-</p>
+        <button class="button" onclick="showPage('congratulationsPage')">Yes</button>
+        <button class="button" id="noButton" onclick="moveNoButton()">No</button>
+    </div>
+
+    <div id="congratulationsPage">
+        <p class="congratulations-text">congratulations, <br> you've just made the best decision of your life, YAYYYYYY</p>
+        <button class="button" onclick="showPage('invitationPage')">Next</button>
+    </div>
+
+    <div id="invitationPage">
+        <div class="invitation">
+            <h2>HERE'S YOUR INVITATION!!!</h2>
+            <p><strong>meeting place:</strong> in front of the SU </p>
+            <p><strong>timing:</strong> whenever you're free</p>
+            <p><strong>dress Code:</strong> Casual comfy (maybe a sweater!>?😗s)</p>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source id="audioSource" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        function showPage(pageId) {
+            const pages = ["mainPage", "proceedPage", "congratulationsPage", "invitationPage"];
+            pages.forEach(page => {
+                const element = document.getElementById(page);
+                if (element) {
+                    element.style.display = "none";
+                    element.style.opacity = "0";
+                }
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = "block";
+                setTimeout(() => {
+                    targetPage.style.opacity = "1";
+                }, 50);
+                // Smooth background color change
+                if (pageId === 'proceedPage') {
+                    document.body.style.background = 'linear-gradient(135deg, #FDE2E4, #FFD6E0)';
+                } else if (pageId === 'congratulationsPage') {
+                    document.body.style.background = 'linear-gradient(135deg, #FFD6E0, #FFF1F3)';
+                    createConfetti();
+                } else if (pageId === 'invitationPage') {
+                    document.body.style.background = 'linear-gradient(135deg, #FFE4E8, #FFF1F3)';
+                } else {
+                    document.body.style.background = 'linear-gradient(135deg, #FFDFD3, #FAD4D8)';
+                }
+            }
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 50 + 'vh';
+                confetti.style.backgroundColor = getRandomColor();
+                document.body.appendChild(confetti);
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#FFB6C1', '#FFD700', '#FF69B4', '#FFA07A', '#98FB98'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function moveNoButton() {
+            let noButton = document.getElementById('noButton');
+            noButton.style.top = Math.max(0, Math.random() * (window.innerHeight - 100)) + 'px';
+            noButton.style.left = Math.max(0, Math.random() * (window.innerWidth - 100)) + 'px';
+            noButton.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+        }
+
+        function selectSong(song) {
+            let audioSource = document.getElementById('audioSource');
+            let backgroundMusic = document.getElementById('backgroundMusic');
+            if (song === 'Thousand Miles') {
+                audioSource.src = 'thousand miles.mp3';
+            } else if (song === 'CHIHIRO') {
+                audioSource.src = 'CHIHIRO.mp3';
+            } else if (song === 'Clarity') {
+                audioSource.src = 'Clarity.mp3';
+            }
+            backgroundMusic.load();
+            backgroundMusic.play();
+            showPage('proceedPage');
+        }
+
+        function adjustVolume() {
+            let backgroundMusic = document.getElementById('backgroundMusic');
+            let volumeControl = document.getElementById('volumeControl');
+            backgroundMusic.volume = volumeControl.value;
+        }
+    </script>
+</body>
+</html>
